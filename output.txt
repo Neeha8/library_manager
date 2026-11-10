@@ -1,0 +1,32 @@
+=== Abstract parent ===
+LibraryItem cannot be created directly: late_fee() is abstract.
+
+=== Borrowing and invalid actions ===
+Alice borrowed: Book: Python 101 by A. Rao (ID 1)
+Could not borrow: Item 'Python 101' is not available.
+Could not borrow again: Item 'Python 101' is not available.
+Bob borrowed: Magazine: Tech Today (Issue 42) (ID 2)
+Could not borrow: Member 'Bob' has reached the borrowing limit.
+Could not return: Item 'Python Recording' is not borrowed by member 'Alice'.
+
+=== Polymorphic late fees ===
+Book: Python 101 by A. Rao (ID 1) -> late fee for 3 days: Rs 6
+Magazine: Tech Today (Issue 42) (ID 2) -> late fee for 3 days: Rs 3
+DVD: Python Recording (148 mins) (ID 3) -> late fee for 3 days: Rs 15
+
+=== Returns ===
+Alice returned: Python 101 -> late fee: Rs 6
+Bob returned: Tech Today -> late fee: Rs 0
+Bob borrowed after returning: Python Recording
+Bob returned: Python Recording -> late fee: Rs 15
+Could not return again: Item 'Python 101' is not borrowed by member 'Alice'.
+
+=== Encapsulation ===
+Direct access to book.__available raises AttributeError.
+Book available through is_available(): True
+Alice's borrowed titles: []
+Bob's borrowed titles: []
+Changing the returned titles list leaves Alice's loans unchanged: []
+
+=== Shared class attribute ===
+Total items created: 3
